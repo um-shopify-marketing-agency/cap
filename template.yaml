@@ -1,0 +1,59 @@
+name: cap
+display_name: "cap — CEO advisor in Slack DMs"
+version: "0.1.0"
+author: "UM — Shopify Marketing Agency"
+updated: "2026-05-01"
+
+tagline: "Sharp, truthful, fair management advisor — operates strictly by Borodatyuk's laws"
+
+description: |
+  Lives in Slack DMs as a CEO consultant for the founder. Grounded
+  exclusively in Artem Borodatyuk's three management books — every
+  recommendation cites the underlying principle. Never fabricates
+  beyond what the books cover. Maintains long-term context about the
+  agency across sessions in memory/context.md so each consultation
+  builds on prior ones.
+
+use_cases:
+  - "Ask any management / leadership / strategy question via DM"
+  - "Hiring, firing, motivation, team development decisions"
+  - "Marketing, sales, ops trade-offs"
+  - "Conflict resolution and negotiation"
+
+resources:
+  cpu: "2"
+  memory: "4g"
+
+runtime:
+  type: claude-code
+  model: opus
+
+# MVP — no external MCP servers. Trinity Channel Adapter handles Slack
+# delivery. cap reads its own knowledge/ and memory/ files only.
+mcp_servers: []
+
+capabilities:
+  - management_consulting
+  - long_term_agency_context
+  - principles_grounded_advice
+
+credentials:
+  env_file: []
+
+git:
+  push_enabled: false
+  commit_paths:
+    - CLAUDE.md
+    - template.yaml
+    - README.md
+    - knowledge/principles.md
+    - knowledge/book-1.md
+    - knowledge/book-2.md
+    - knowledge/book-3.md
+  ignore_paths:
+    - .mcp.json
+    - .env
+    - "*.log"
+    - content/
+    - memory/context.md
+    - memory/conversations/*.md

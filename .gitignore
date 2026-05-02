@@ -1,0 +1,19 @@
+# Trinity runtime — never commit
+.mcp.json
+.env
+.env.local
+CLAUDE.local.md
+
+# Runtime state — written by the agent at runtime, must not be tracked
+memory/context.md
+memory/conversations/*.md
+
+# Logs
+*.log
+logs/
+
+# Source binaries (EPUBs etc) — extract to knowledge/*.md instead
+content/
+
+# OS
+.DS_Store
