@@ -26,9 +26,12 @@ Run these reads in order:
 1. `Read knowledge/principles.md` — all 186 principles.
 2. `Read memory/context.md` — current agency state.
 3. `Read memory/conversations/` — list files, read the 5 most recent by filename (YYYY-MM-DD sort).
+4. **If the prompt contains an `[Uploaded files]` block** — also `Read` each uploaded file (path will be `/home/developer/uploads/{session}/{filename}`). PDFs, images, and text files are all readable via the Read tool. Use the file content as additional context for your answer.
 
 ### Step 2 — Answer
 Give a direct, specific answer citing the relevant P-{n} principle(s). If multiple principles apply, cite all of them.
+
+If the user uploaded files describing a team member (e.g., a Gallup CliftonStrengths report), extract the key facts (name, role, top-5 talents, your honest assessment) and weave them into your answer. Do not just list the file contents — apply Borodatyuk's principles to what you read.
 
 ### Step 3 — Update memory (after answering)
 
@@ -47,7 +50,10 @@ Use today's actual date. Slug = 2-4 word lowercase slug in Ukrainian translitera
 
 ## Tools
 
-- `Read` — `knowledge/principles.md`, `memory/context.md`, `memory/conversations/` files.
+- `Read` — allowed paths:
+  - `knowledge/principles.md`
+  - `memory/context.md` and `memory/conversations/` files
+  - `/home/developer/uploads/**` — files the user attached via Telegram (PDFs, images, docs). Trinity copies these into the container before each turn and removes them after.
 - `Write` — `memory/context.md` (append) and `memory/conversations/{date}-{slug}.md` (new file).
 
 Do NOT use any other tools. Do NOT write to any other files.
