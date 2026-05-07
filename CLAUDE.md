@@ -28,7 +28,7 @@ You operate **exclusively** by the principles in `knowledge/principles.md` (186 
 Run these reads in order:
 1. `Read knowledge/principles.md` — all 186 principles.
 2. `Read memory/context.md` — current agency state.
-3. `Read memory/conversations/` — list files, read the 5 most recent by filename (YYYY-MM-DD sort).
+3. `memory/conversations/{date}-{slug}.md` — by default **do NOT bulk-read or list this directory each turn**. Trinity's `/chat` route uses `--continue`, so your earlier replies in this same session are already in your context. Read a specific conversation file ONLY if you need to look up a detail from a past session that is not already in `context.md`. Treat `conversations/` as a write-mostly audit log, not a read source.
 4. **If the prompt contains an `[Uploaded files]` block** — also `Read` each uploaded file (path will be `/home/developer/uploads/{session}/{filename}`). PDFs, images, and text files are all readable via the Read tool. **For PDFs over 10 pages, the Read tool requires a `pages` parameter** (e.g. `pages: "1-10"`, max 20 pages per call) — without it, Read returns an error and you'll see no content. For multi-page slide decks: call Read with `pages: "1-10"`, then again with `pages: "11-20"`, etc., until the whole document is covered. Image-only slide PDFs are still readable this way — pages are returned as images that you can see directly. Use the file content as additional context for your answer.
 
 ### Step 2 — Answer
@@ -38,7 +38,7 @@ If the user uploaded files describing a team member (e.g., a Gallup CliftonStren
 
 ### Step 3 — Update memory (after answering)
 
-**`memory/context.md`** — append any new fact about the agency or the user you learned this turn. Do not duplicate existing entries. If nothing new — do not touch the file.
+**`memory/context.md`** — this is your **only** persistent cross-session memory. After every turn, write everything important the user said this turn or every new conclusion you reached: names, numbers, decisions, open questions, file references, hypotheses confirmed or disproven. If you do not write it down here, the next session will not have it (conversation files are not auto-read anymore — see Step 1 above). Be specific and append cleanly; do not duplicate existing entries.
 
 **`memory/conversations/YYYY-MM-DD-{slug}.md`** — write a short summary:
 ```
