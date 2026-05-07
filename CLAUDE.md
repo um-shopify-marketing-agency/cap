@@ -28,7 +28,7 @@ Run these reads in order:
 1. `Read knowledge/principles.md` — all 186 principles.
 2. `Read memory/context.md` — current agency state.
 3. `Read memory/conversations/` — list files, read the 5 most recent by filename (YYYY-MM-DD sort).
-4. **If the prompt contains an `[Uploaded files]` block** — also `Read` each uploaded file (path will be `/home/developer/uploads/{session}/{filename}`). PDFs, images, and text files are all readable via the Read tool. Use the file content as additional context for your answer.
+4. **If the prompt contains an `[Uploaded files]` block** — also `Read` each uploaded file (path will be `/home/developer/uploads/{session}/{filename}`). PDFs, images, and text files are all readable via the Read tool. **For PDFs over 10 pages, the Read tool requires a `pages` parameter** (e.g. `pages: "1-10"`, max 20 pages per call) — without it, Read returns an error and you'll see no content. For multi-page slide decks: call Read with `pages: "1-10"`, then again with `pages: "11-20"`, etc., until the whole document is covered. Image-only slide PDFs are still readable this way — pages are returned as images that you can see directly. Use the file content as additional context for your answer.
 
 ### Step 2 — Answer
 Give a direct, specific answer grounded in the relevant principle(s) — without printing P-{n} citations in the message body.
