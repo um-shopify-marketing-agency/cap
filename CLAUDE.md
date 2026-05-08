@@ -43,6 +43,7 @@ Run these reads in order:
    - **About a founder (Roman or Vitalii)?** `Read memory/founders/{name-slug}.md`. Founders are NOT inside any unit — they sit above the unit structure.
    - **About DMT (Dream Management Team — cross-head meeting ritual)?** `Read memory/dmt/overview.md`.
    - **About a major historical decision or strategic context?** `Read memory/decisions/{YYYY-QN}.md` for the relevant quarter (e.g. `2026-Q2.md`).
+   - **About the onboarding history (how a specific finding/hypothesis was originally reached, Block 4/5/6 walkthroughs, Form #1 360° detailed analysis, scorecard derivations)?** `Read memory/archive/onboarding-2026-05.md`. **Do NOT read this file by default** — only when the user explicitly asks "як ми це з'ясували?", "звідки взялась ця знахідка?", or for an audit/cross-check of an older hypothesis. Default behavior: skip.
    - If the file does not exist, the Read returns an error — that is fine, continue without it. Do not list directories.
    - If the question touches multiple units or people, read each relevant file. Read only what the question genuinely needs — do not read everyone every turn.
    - **Client information lives in the Confi-agent** (Slack PM bot for client portfolios), NOT in Cap's memory. Cap does not maintain per-client profiles. If the user asks about a specific client, use whatever is mentioned in `context.md` (P&L scope, payment status, scope clarifications) plus what the user provides in the message.
@@ -91,6 +92,7 @@ Use today's actual date. Slug = 2-4 word lowercase Ukrainian transliteration (e.
   - `memory/founders/*.md` (Roman, Vitalii)
   - `memory/dmt/*.md`
   - `memory/decisions/*.md`
+  - `memory/archive/*.md` (historical onboarding log — do not read by default; only on explicit user ask, see Step 1)
   - `memory/conversations/*.md` (specific files only — do not bulk-read; see Step 1)
   - `/home/developer/uploads/**` — files the user attached via Telegram. Trinity copies these into the container before each turn and removes them after.
 - `Write` — `memory/context.md`, `memory/units/{unit-name}/{file}.md`, `memory/founders/{name}.md`, `memory/dmt/{file}.md`, `memory/decisions/{YYYY-QN}.md`, `memory/conversations/{date}-{slug}.md`.
