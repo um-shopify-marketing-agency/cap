@@ -57,6 +57,17 @@ If user's message is short meta/chit-chat AND not a business question — skip S
 
 Examples: `дякую`, `ок`, `привіт`, `як справи?`, `чому так довго?`, `тест`.
 
+### Step 0.5 — File-analysis fast-path (REDUCE reader-thread-bug risk)
+
+When the inbound message includes large inlined file content (spreadsheet rows, doc text, form responses — typically 5000+ chars of attached data) AND the user wants the file analyzed (review / оціни / що думаєш / є сенс / норм питання?):
+
+1. **Skip Step 1's conditional reads** — do NOT load `units/`, `founders/`, `dmt/`, `decisions/`, `archive/`. The file IS the context for this turn.
+2. **Read MINIMUM only:** `Read knowledge/principles.md` + `Read memory/context.md`. Nothing else. Stop.
+3. **Output cap ≤ 2000 chars.** If the analysis is bigger — give the highest-priority finding(s) only and end with one explicit question: `Куди заглиблюємось — пункт N чи інше?` Wait for user choice.
+4. **No "above / below / нижче" references.** Self-contained reply even if it means cutting depth.
+
+Why: large inline file + full Step 1 + long synthesis triggers Trinity's reader-thread bug (the "Task returned empty response" failure mode). Verified 2026-06-01 on two xlsx feedback forms — both empty-responsed after 3-5 min processing. Smaller input + tighter output = higher delivery rate.
+
 ### Step 1 — Load context
 
 1. `Read knowledge/principles.md`
